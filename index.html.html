@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chillies Family Dhaba | North Indian & Indo-Chinese Cuisine</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Configuration for Tailwind (Optional: Customizing colors/font) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dhaba-red': '#B91C1C', // Deep Chili Red
+                        'dhaba-orange': '#F59E0B', // Mustard/Turmeric Gold
+                        'dhaba-bg': '#FFFBEB', // Light Cream/Khaki background
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Custom CSS for subtle effects and text shadow -->
+    <style>
+        .hero-bg {
+            background-color: #262626; /* Dark slate background */
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://placehold.co/1200x600/1e1e1e/FFF?text=Indian+Curry+%26+Fried+Rice');
+            background-size: cover;
+            background-position: center;
+        }
+        .text-shadow-strong {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        /* Style for the review badge */
+        .rating-badge {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            animation: pulse-rating 2s infinite;
+        }
+        @keyframes pulse-rating {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        /* Class to mark content that should be translated */
+        .lang-text {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="font-sans bg-dhaba-bg text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-lg sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+            <h1 class="text-3xl font-bold text-dhaba-red tracking-wider lang-text" data-te="చిల్లీస్ ఫ్యామిలీ">
+                Chillies Family <span class="text-dhaba-orange lang-text" data-te="ధాబా">Dhaba</span>
+            </h1>
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-8 items-center">
+                <!-- Language Toggle Button -->
+                <button id="lang-toggle-btn" class="bg-gray-100 text-gray-700 px-3 py-1.5 rounded-lg hover:bg-gray-200 transition duration-300 font-bold text-sm">
+                    EN / TE
+                </button>
+                <a href="#menu" class="text-gray-600 hover:text-dhaba-red transition duration-300 font-medium lang-text" data-te="మెనూ">Menu</a>
+                <a href="#reviews" class="text-gray-600 hover:text-dhaba-red transition duration-300 font-medium lang-text" data-te="రేటింగ్స్">Ratings</a>
+                <a href="#location" class="text-gray-600 hover:text-dhaba-red transition duration-300 font-medium lang-text" data-te="మమ్మల్ని సందర్శించండి">Visit Us</a>
+                <a href="#" class="bg-dhaba-red text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300 shadow-md lang-text" data-te="ఇప్పుడే ఆర్డర్ చేయండి">Order Now</a>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu (Hidden by Default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <a href="#menu" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 lang-text" data-te="మెనూ">Menu</a>
+            <a href="#reviews" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 lang-text" data-te="రేటింగ్స్">Ratings</a>
+            <a href="#location" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 lang-text" data-te="మమ్మల్ని సందర్శించండి">Visit Us</a>
+            <a href="#" class="block px-4 py-2 bg-dhaba-red text-white hover:bg-red-700 lang-text" data-te="ఇప్పుడే ఆర్డర్ చేయండి">Order Now</a>
+            <button id="mobile-lang-toggle-btn" class="block w-full text-left px-4 py-2 bg-gray-100 text-gray-700 hover:bg-gray-200 transition duration-300 font-bold text-sm border-t">
+                EN / TE
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg h-screen flex items-center justify-center text-white p-4">
+        <div class="text-center max-w-4xl space-y-6">
+            <div class="rating-badge bg-dhaba-orange text-gray-900 px-6 py-2 inline-block rounded-full font-extrabold text-sm sm:text-lg lang-text" data-te="గూగుల్ రేటింగ్: 4.4 / 5 ⭐">
+                GOOGLE RATING: 4.4 / 5 ⭐
+            </div>
+            <h2 class="text-5xl sm:text-7xl font-extrabold tracking-tight leading-tight text-shadow-strong lang-text" data-te="ధాబా మరియు డ్రాగన్ లో ఉత్తమమైనది">
+                The Best of DHABA & <span class="text-dhaba-orange lang-text" data-te="డ్రాగన్">DRAGON</span>
+            </h2>
+            <p class="text-xl sm:text-2xl font-light max-w-2xl mx-auto text-gray-200 lang-text" data-te="రుచుల సమ్మేళనాన్ని ఆస్వాదించండి! ప్రామాణికమైన ఉత్తర భారతీయ కూరలు ఉద్వేగభరితమైన ఇండో-చైనీస్ వంటకాలతో కలుస్తాయి, ఇవన్నీ గొప్ప సేవ మరియు ప్రశాంత వాతావరణంలో అందించబడతాయి.">
+                Taste the fusion! Authentic North Indian curries meet fiery Indo-Chinese favorites, served with great service and a calm atmosphere.
+            </p>
+            <a href="#menu" class="mt-8 inline-block px-10 py-4 bg-dhaba-red text-white text-lg font-bold rounded-xl shadow-2xl hover:bg-red-700 transition duration-300 transform hover:scale-105 lang-text" data-te="మా మెనూను అన్వేషించండి">
+                Explore Our Menu
+            </a>
+        </div>
+    </section>
+
+    <!-- Full Menu Section (REMAINS THE SAME) -->
+    <section id="menu" class="py-16 sm:py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-12 text-center border-b-4 border-dhaba-orange pb-4 lang-text" data-te="చిల్లీస్ ఫ్యామిలీ ధాబా - పూర్తి మెనూ">Chillies Family Dhaba - Full Menu</h2>
+
+            <!-- Menu Categories Container -->
+            <div class="space-y-12">
+                
+                <!-- Category 1: Soups (1/2 | Full) -->
+                <div class="bg-dhaba-bg p-6 rounded-xl shadow-xl">
+                    <h3 class="text-3xl font-bold text-dhaba-red mb-6 border-b pb-2 lang-text" data-te="సూప్స్ (1/2 | పూర్తి)">Soups <span class="text-dhaba-orange">(1/2 | Full)</span></h3>
+                    <div class="space-y-2">
+                        <!-- Menu Item -->
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="టమాటో సూప్">Tomato Soup</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹70 / ₹110">₹70 / ₹110</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="హాట్ అండ్ సోర్ సూప్">Hot and Sour Soup</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹70 / ₹110">₹70 / ₹110</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="చికెన్ కార్న్ సూప్">Chicken Corn Soup</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹80 / ₹120">₹80 / ₹120</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="స్వీట్ కార్న్ సూప్">Sweet Corn Soup</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹70 / ₹120">₹70 / ₹120</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Starters (Non-Veg & Veg) -->
+                <div class="bg-white p-6 rounded-xl shadow-xl border-t-4 border-dhaba-red">
+                    <h3 class="text-3xl font-bold text-dhaba-red mb-6 border-b pb-2 lang-text" data-te="స్టార్టర్స్ (వెజ్ & నాన్-వెజ్)">Starters <span class="text-dhaba-orange">(Veg & Non-Veg)</span></h3>
+
+                    <h4 class="text-xl font-bold text-gray-800 mt-6 mb-3 lang-text" data-te="నాన్-వెజ్ స్టార్టర్స్">Non-Veg Starters</h4>
+                    <div class="space-y-2 border-b pb-4">
+                        <!-- Items -->
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="చికెన్ 65">Chicken 65</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹200">₹200</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="చిల్లీ చికెన్">Chilli Chicken</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹200">₹200</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="చికెన్ మంచూరియా">Chicken Manchuria</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹200">₹200</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="చికెన్ లాలీపాప్">Chicken Lollipop</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹200">₹200</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="చికెన్ వింగ్స్">Chicken Wings</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹200">₹200</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="డ్రాగన్ చికెన్">Dragon Chicken</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹210">₹210</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="చికెన్ 555">Chicken 555</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹210">₹210</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="చికెన్ మెజెస్టిక్">Chicken Majestic</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹210">₹210</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="చికెన్ పకోడీ">Chicken Pakodi</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹200">₹200</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="కాజు చికెన్">Kaju Chicken</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹230">₹230</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="షేజ్వాన్ చికెన్">Schezwan Chicken</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹220">₹220</span>
+                        </div>
+                    </div>
+
+                    <h4 class="text-xl font-bold text-gray-800 mt-6 mb-3 lang-text" data-te="వెజ్ స్టార్టర్స్">Veg Starters</h4>
+                    <div class="space-y-2">
+                        <!-- Items -->
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="గోబీ మంచూరియా">Gobi Manchuria</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹150">₹150</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="గోబీ 65">Gobi 65</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹150">₹150</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="పనీర్ 65">Paneer 65</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹150">₹150</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="వెజ్ మంచూరియా">Veg Manchuria</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹150">₹150</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="పనీర్ మంచూరియా">Paneer Manchuria</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹160">₹160</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="చిల్లీ పనీర్">Chilli Paneer</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹200">₹200</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="మష్రూమ్ 65">Mashroom 65</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹200">₹200</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: Curries (Veg & Non-Veg - 1/2 | Full) -->
+                <div class="bg-dhaba-bg p-6 rounded-xl shadow-xl">
+                    <h3 class="text-3xl font-bold text-dhaba-red mb-6 border-b pb-2 lang-text" data-te="కరీలు (1/2 | పూర్తి)">Curries <span class="text-dhaba-orange">(1/2 | Full)</span></h3>
+                    
+                    <h4 class="text-xl font-bold text-gray-800 mt-6 mb-3 lang-text" data-te="వెజ్ కర్రీస్">Veg Curries</h4>
+                    <div class="space-y-2 border-b pb-4">
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="పనీర్ బటర్ మసాలా">Paneer Butter Masala</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹160 / ₹220">₹160 / ₹220</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="మెంతి చమన్">Methi Chaman</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹160 / ₹220">₹160 / ₹220</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="పాలక్ పనీర్">Palak Paneer</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹150 / ₹200">₹150 / ₹200</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="మిక్స్డ్ వెజ్ కుర్మా">Mixed Veg Kurma</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹140 / ₹190">₹140 / ₹190</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="ప్లైన్ పాలక్">Plain Palak</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹130 / ₹180">₹130 / ₹180</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="కాజు టమాటో">Kaju Tomato</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹160 / ₹220">₹160 / ₹220</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="పనీర్ కాజు">Paneer Kaju</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹200 / ₹280">₹200 / ₹280</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="ఎగ్ బుజ్జి">Egg Bujji</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹100 / ₹150">₹100 / ₹150</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="ఎగ్ కిమా">Egg Kima</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹150 / ₹210">₹150 / ₹210</span>
+                        </div>
+                    </div>
+                    
+                    <h4 class="text-xl font-bold text-gray-800 mt-6 mb-3 lang-text" data-te="నాన్-వెజ్ కర్రీస్">Non-Veg Curries</h4>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="చికెన్ మసాలా కర్రీ">Chicken Masala Curry</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹160 / ₹220">₹160 / ₹220</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="కడాయి చికెన్ కర్రీ">Kadai Chicken Curry</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹160 / ₹220">₹160 / ₹220</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="ఆంధ్ర చికెన్ కర్రీ">Andhra Chicken Curry</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹160 / ₹220">₹160 / ₹220</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="మెంతి చికెన్ కర్రీ">Methi Chicken Curry</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹160 / ₹220">₹160 / ₹220</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="మొఘలాయి చికెన్ కర్రీ">Mughlai Chicken Curry</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹160 / ₹230">₹160 / ₹230</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="కాజు చికెన్ కర్రీ">Kaju Chicken Curry</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹170 / ₹260">₹170 / ₹260</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="మహారాణి చికెన్">Maharani Chicken</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹160 / ₹260">₹160 / ₹260</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="బ్లాక్ పెప్పర్ చికెన్">Black Pepper Chicken</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹160 / ₹230">₹160 / ₹230</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="గుంటూరు చికెన్ కర్రీ">Guntur Chicken Curry</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹160 / ₹240">₹160 / ₹240</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="హైదరాబాద్ చికెన్ కర్రీ">Hyderabad Chicken Curry</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹160 / ₹230">₹160 / ₹230</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="గొంగూర చికెన్">Gongura Chicken</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹160 / ₹230">₹160 / ₹230</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="పంజాబీ చికెన్">Punjabi Chicken</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹160 / ₹240">₹160 / ₹240</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="స్పెషల్ చికెన్">Spl. Chicken</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹160 / ₹250">₹160 / ₹250</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="మటన్">Mutton</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹200 / ₹300">₹200 / ₹300</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="ప్రాన్స్ కర్రీ">Prawns Curry</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹200 / ₹300">₹200 / ₹300</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Category 4: Biryanis & Fried Rice -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Biryanis -->
+                    <div class="bg-white p-6 rounded-xl shadow-xl border-t-4 border-dhaba-red">
+                        <h3 class="text-3xl font-bold text-dhaba-red mb-6 border-b pb-2 lang-text" data-te="బిర్యానీలు">Biryanis</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="మినీ దమ్ బిర్యానీ">Mini Dum Biryani</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹120">₹120</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="మినీ ఫ్రై బిర్యానీ">Mini Fry Biryani</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹130">₹130</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="హైదరాబాద్ చికెన్ దమ్ బిర్యానీ">Hyd Chicken Dum Biryani</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹180">₹180</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="చికెన్ ఫ్రై పీస్ బిర్యానీ">Chicken Fry Piece Biryani</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹190">₹190</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="చికెన్ లాలీపాప్ బిర్యానీ">Chicken Lollipop Biryani</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹250">₹250</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="చికెన్ వింగ్స్ బిర్యానీ">Chicken Wings Biryani</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹260">₹260</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="చిల్లీస్ స్పెషల్ బిర్యానీ">Chillies Special Biryani</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹270">₹270</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="ప్రాన్స్ బిర్యానీ">Prawns Biryani</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹270">₹270</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="ఫ్యామిలీ ప్యాక్ బిర్యానీ">Family Pack Biryani</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹610">₹610</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="ముఘలా బిర్యానీ">Mughla Biryani</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹270">₹270</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fried Rice -->
+                    <div class="bg-white p-6 rounded-xl shadow-xl border-t-4 border-dhaba-orange">
+                        <h3 class="text-3xl font-bold text-dhaba-red mb-6 border-b pb-2 lang-text" data-te="ఫ్రైడ్ రైస్ & రైస్">Fried Rice & Rice</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="వెజ్ - ఫ్రైడ్ రైస్">Veg - Fried Rice</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹100">₹100</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="ఎగ్ ఫ్రైడ్ రైస్">Egg Fried Rice</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹100">₹100</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="చికెన్ ఫ్రైడ్ రైస్">Chicken Fried Rice</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹120">₹120</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="స్పెషల్ చికెన్ ఫ్రైడ్ రైస్">Spl Chicken Fried Rice</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹220">₹220</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="పనీర్ ఫ్రైడ్ రైస్">Paneer Fried Rice</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹149">₹149</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="షేజ్వాన్ చికెన్ ఫ్రైడ్ రైస్">Schezwan Chicken Fried Rice</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹149">₹149</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="జీరా రైస్">Jeera Rice</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹130">₹130</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 5: Roti & Lassi -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Rotis -->
+                    <div class="bg-white p-6 rounded-xl shadow-xl border-t-4 border-dhaba-orange">
+                        <h3 class="text-3xl font-bold text-dhaba-red mb-6 border-b pb-2 lang-text" data-te="రోటీస్">Rotis</h3>
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-lg font-medium text-gray-800 lang-text" data-te="పుల్కా">Pulka</span>
+                            <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹7">₹7</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Lassi -->
+                    <div class="bg-white p-6 rounded-xl shadow-xl border-t-4 border-dhaba-red">
+                        <h3 class="text-3xl font-bold text-dhaba-red mb-6 border-b pb-2 lang-text" data-te="లస్సీ & మజ్జిగ">Lassi & Buttermilk</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="మజ్జిగ">Buttermilk</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹40">₹40</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="మసాకా మజ్జిగ">Masaka Buttermilk</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹50">₹50</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="లస్సీ">Lassi</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹50">₹50</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="అల్లం లస్సీ">Ginger Lassi</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹60">₹60</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="మ్యాంగో లస్సీ">Mango Lassi</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹60">₹60</span>
+                            </div>
+                            <div class="flex justify-between items-center py-2">
+                                <span class="text-lg font-medium text-gray-800 lang-text" data-te="జీరా లస్సీ">Zeera Lassi</span>
+                                <span class="text-lg font-bold text-dhaba-red lang-text" data-te="₹60">₹60</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews and Ambiance Section (REMAINS THE SAME) -->
+    <section id="reviews" class="py-16 sm:py-24 bg-dhaba-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:flex lg:items-center lg:justify-between space-y-12 lg:space-y-0">
+                <!-- Ratings Block -->
+                <div class="lg:w-1/2 bg-white p-8 rounded-xl shadow-2xl border-l-8 border-dhaba-red">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6 lang-text" data-te="మా రేటింగ్స్ & నిబద్ధత">Our Ratings & Commitment</h2>
+                    <div class="flex items-center space-x-6 mb-8">
+                        <div>
+                            <p class="text-5xl font-extrabold text-dhaba-orange lang-text">4.4</p>
+                            <p class="text-gray-500 lang-text" data-te="/ 5 నక్షత్రాలు">/ 5 Stars</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-semibold text-gray-700 lang-text" data-te="గూగుల్ వినియోగదారులు">Google Users</p>
+                            <p class="text-sm text-gray-500 lang-text" data-te="67 సమీక్షల ఆధారంగా">Based on 67 Reviews</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-dhaba-red lang-text" data-te="మా అతిథులు దేనిని ఇష్టపడతారు:">What Our Guests Love:</h3>
+                        <ul class="list-none space-y-2">
+                            <li class="flex items-center text-gray-700 lang-text" data-te="**గొప్ప సేవ:** అత్యధికంగా ప్రస్తావించబడిన హైలైట్! మా సిబ్బందికి శిక్షణ ఇవ్వబడింది మరియు కష్టపడి పని చేస్తారు."><svg class="w-5 h-5 text-dhaba-orange mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                **Great Service:** The most mentioned highlight! Our staff is well-trained and works hard.</li>
+                            <li class="flex items-center text-gray-700 lang-text" data-te="**ప్రశాంత వాతావరణం:** మీ కుటుంబ భోజనం కోసం హాయిగా మరియు విశ్రాంతినిచ్చే వాతావరణం."><svg class="w-5 h-5 text-dhaba-orange mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                **Calm Atmosphere:** A comfortable and relaxing environment for your family meal.</li>
+                            <li class="flex items-center text-gray-700 lang-text" data-te="**తగినంత పార్కింగ్:** మీ వాహనం కోసం తగినంత స్థలంతో డైన్-ఇన్ సులభం."><svg class="w-5 h-5 text-dhaba-orange mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                                **Plenty of Parking:** Dine-in made easy with ample space for your vehicle.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Ambiance Image Placeholder -->
+                <div class="lg:w-5/12">
+                    <img class="w-full h-80 object-cover rounded-xl shadow-2xl"
+                         src="https://placehold.co/600x400/1C1D1C/FFF?text=Calm+Dhaba+Ambiance"
+                         alt="Chillies Family Dhaba Interior">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact Section (UPDATED) -->
+    <section id="location" class="py-16 sm:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-6 lang-text" data-te="ఈరోజే మమ్మల్ని సందర్శించండి">Visit Us Today</h2>
+            <p class="text-lg text-gray-600 mb-10 lang-text" data-te="మీ భోజనం లేదా విందు కోసం మీకు స్వాగతం చెప్పడానికి మేము ఎదురుచూస్తున్నాము.">We look forward to welcoming you for lunch or dinner.</p>
+
+            <div class="grid md:grid-cols-3 gap-8 text-left">
+                <!-- Hours (UPDATED) -->
+                <div class="bg-dhaba-bg p-6 rounded-xl shadow-lg border-l-4 border-dhaba-orange">
+                    <h3 class="text-2xl font-bold text-dhaba-red mb-3 lang-text" data-te="సమయాలు">Hours</h3>
+                    <p class="text-lg font-medium text-gray-700 mb-2 lang-text" data-te="ప్రతి రోజు ఓపెన్">Open Daily</p>
+                    <ul class="mt-2 space-y-1 text-gray-600">
+                        <li class="flex justify-between">
+                            <span class="lang-text" data-te="సోమవారం - శుక్రవారం, ఆదివారం">Mon - Fri, Sun:</span>
+                            <span class="font-bold">11:30 AM - 10:30 PM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span class="lang-text" data-te="శనివారం">Saturday:</span>
+                            <span class="font-bold">11:30 AM - 10:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact (UPDATED) -->
+                <div class="bg-dhaba-bg p-6 rounded-xl shadow-lg border-l-4 border-dhaba-orange">
+                    <h3 class="text-2xl font-bold text-dhaba-red mb-3 lang-text" data-te="సంప్రదించండి">Contact</h3>
+                    <p class="text-gray-600 mb-3 lang-text" data-te="ఫోన్: ">Phone: <a href="tel:+919182352076" class="hover:text-dhaba-red font-semibold lang-text" data-te="+91 91823 52076">+91 91823 52076</a></p>
+                    <p class="text-gray-600 lang-text" data-te="ఇమెయిల్: ">Email: <a href="mailto:contact@chilliesdhaba.com" class="hover:text-dhaba-red lang-text">contact@chilliesdhaba.com</a></p>
+                </div>
+
+                <!-- Location & Features (UPDATED) -->
+                <div class="bg-dhaba-bg p-6 rounded-xl shadow-lg border-l-4 border-dhaba-orange">
+                    <h3 class="text-2xl font-bold text-dhaba-red mb-3 lang-text" data-te="స్థానం & సేవలు">Location & Services</h3>
+                    <p class="text-gray-600 font-medium lang-text" data-te="చిరునామా">Address:</p>
+                    <p class="text-gray-600 mt-1 mb-4 font-semibold">FX3Q+XFG, Gudivada, Andhra Pradesh, India</p>
+                    
+                    <!-- Added landmark mention -->
+                    <p class="text-sm font-semibold text-dhaba-red mb-4 lang-text" data-te="ల్యాండ్‌మార్క్: VKR & VNB పాలిటెక్నిక్ కాలేజ్ దగ్గర">LANDMARK: Near VKR & VNB Polytechnic College</p>
+                    <!-- End Added landmark mention -->
+
+                    <h4 class="text-xl font-bold text-dhaba-orange mb-2 lang-text" data-te="ముఖ్య లక్షణాలు">Key Features:</h4>
+                    <ul class="space-y-1 text-gray-700 text-sm">
+                        <li class="lang-text" data-te="డెలివరీ అందుబాటులో ఉంది">✅ Delivery Available</li>
+                        <li class="lang-text" data-te="టేక్‌అవేకు స్వాగతం">✅ Takeaway Welcome</li>
+                        <li class="lang-text" data-te="వీల్‌చైర్ యాక్సెసిబిలిటీ">✅ Wheelchair Accessible</li>
+                        <li class="lang-text" data-te="వెజిటేరియన్ ఆప్షన్స్">✅ Vegetarian Options</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- New section for the college landmark -->
+            <div class="mt-16 pt-10 border-t border-gray-200">
+                <h3 class="text-3xl font-extrabold text-gray-900 mb-4 lang-text" data-te="మా స్థానం గురించి">About Our Location</h3>
+                <div class="bg-white p-6 rounded-xl shadow-xl border-l-8 border-dhaba-red max-w-2xl mx-auto">
+                    <h4 class="text-2xl font-bold text-dhaba-red mb-2 lang-text" data-te="VKR & VNB పాలిటెక్నిక్ కాలేజ్">V.K.R. & V.N.B. Polytechnic College</h4>
+                    <p class="text-lg text-gray-700 mb-4 lang-text" data-te="మేము పాలిటెక్నిక్ కాలేజీకి చాలా దగ్గరగా ఉన్నాము, విద్యార్థులకు మరియు సిబ్బందికి త్వరగా భోజనం చేయడానికి అనుకూలమైన ప్రదేశం.">
+                        We are located just **opposite** the Polytechnic College, making us a convenient spot for students and staff looking for a quick, delicious meal, or a relaxed family dinner.
+                    </p>
+                    <a href="https://maps.app.goo.gl/gQ9r7F8P4H6gY2QY6" target="_blank" class="inline-block bg-dhaba-orange text-white px-6 py-2 rounded-lg hover:bg-yellow-600 transition duration-300 font-semibold text-sm shadow-md lang-text" data-te="మాప్ లో కాలేజీని చూడండి">
+                        View College on Map
+                    </a>
+                </div>
+            </div>
+            <!-- End new section -->
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-lg font-bold mb-2 lang-text" data-te="చిల్లీస్ ఫ్యామిలీ ధాబా">Chillies Family Dhaba</p>
+            <p class="text-sm text-gray-400 mb-1 lang-text" data-te="గర్వంగా **నాగ కృష్ణ యార్లగడ్డ** ద్వారా యాజమాన్యం మరియు నిర్వహించబడుతుంది.">Proudly owned and operated by **Naga Krishna Yarlagadda**.</p>
+            <p class="text-sm text-gray-400 lang-text" data-te="&copy; 2025 చిల్లీస్ ఫ్యామిలీ ధాబా. అన్ని హక్కులు రిజర్వ్ చేయబడ్డాయి.">&copy; 2025 Chillies Family Dhaba. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu Toggle and Language Switch -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const langToggleBtn = document.getElementById('lang-toggle-btn');
+        const mobileLangToggleBtn = document.getElementById('mobile-lang-toggle-btn');
+        let isTelugu = false;
+
+        // Function to handle the language swap
+        function toggleLanguage() {
+            isTelugu = !isTelugu;
+            const elements = document.querySelectorAll('.lang-text');
+            
+            elements.forEach(element => {
+                const teluguText = element.getAttribute('data-te');
+                const englishText = element.textContent;
+                
+                if (teluguText) {
+                    // Check if we need to swap the content
+                    if (isTelugu) {
+                        element.setAttribute('data-en', englishText); // Store English text before swapping
+                        element.textContent = teluguText;
+                    } else {
+                        const storedEnglishText = element.getAttribute('data-en');
+                        if (storedEnglishText) {
+                            element.textContent = storedEnglishText;
+                            element.removeAttribute('data-en');
+                        }
+                    }
+                }
+            });
+
+            // Update button text
+            const buttonText = isTelugu ? 'తెలుగు / ఇంగ్లీష్' : 'EN / TE';
+            langToggleBtn.textContent = buttonText;
+            mobileLangToggleBtn.textContent = buttonText;
+
+            // Update title
+            const newTitle = isTelugu ? 'చిల్లీస్ ఫ్యామిలీ ధాబా | ఉత్తర భారతీయ & ఇండో-చైనీస్ వంటకాలు' : 'Chillies Family Dhaba | North Indian & Indo-Chinese Cuisine';
+            document.title = newTitle;
+        }
+
+        // Add event listeners for language buttons
+        langToggleBtn.addEventListener('click', toggleLanguage);
+        mobileLangToggleBtn.addEventListener('click', toggleLanguage);
+
+
+        // Mobile Menu Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close menu when a link is clicked (for smoother navigation)
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>
